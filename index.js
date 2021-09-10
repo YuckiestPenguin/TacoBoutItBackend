@@ -1,39 +1,24 @@
 const express = require('express');
 const app = express();
+var bodyParser = require('body-parser')
+const mongoose = require('mongoose')
 
-// todo - sample taco payload for now
-const tacos = [
-    {
-        id:1,
-        name: "Al Pastor",
-        proteins: ["Pork"],
-        ingredients: [
-            "Pork",
-            "Pineapple",
-            "Cilantro",
-            "Onion"
-        ],
-        imageUrl:"https://images.pexels.com/photos/2338015/pexels-photo-2338015.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260"
-    },
-    {
-        id:2,
-        name: "Carne Asada",
-        proteins: ["Beef"],
-        ingredients: [
-            "Beef",
-            "Cilantro",
-            "Onion"
-        ],
-        imageUrl:"https://images.pexels.com/photos/7613568/pexels-photo-7613568.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-    }
-]
 
-app.get('/', function (req, res) {
-    res.send("hello");
+app.use(express.json());
+const mongoDbUrl = process.env.DB_URL
+mongoose.connect(mongoDbUrl);
+mongoose.Promise = global.Promise;
+
+mongoose.connect(mongoDbUrl, {
+    useNewUrlParser: true
+}).then(() => {
+    console.log("Successfully connected to the database");    
+}).catch(err => {
+    console.log('Could not connect to the database. Exiting now...', err);
+    process.exit();
 });
 
-app.get('/tacos', function (req, res) {
-    res.send(tacos)
-})
 
+
+require('./routes/taco.routes.js')(app)
 app.listen(3000);
