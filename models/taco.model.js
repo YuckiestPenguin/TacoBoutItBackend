@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const TacoSchema = mongoose.Schema({
     name: String,
-    id: Number,
+    id: String,
     imageUrl: String
 }, {
     timestamps: true
