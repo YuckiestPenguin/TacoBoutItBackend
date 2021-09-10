@@ -3,7 +3,9 @@ const mongoose = require('mongoose');
 const TacoSchema = mongoose.Schema({
     name: String,
     id: String,
-    imageUrl: String
+    imageUrl: String,
+    ingredients: Array,
+    proteins:Array
 }, {
     timestamps: true
 })

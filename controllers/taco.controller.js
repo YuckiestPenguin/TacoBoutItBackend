@@ -25,6 +25,8 @@ exports.create = (req, res) => {
     const taco = new Taco({
         name: req.body.name || "Untitled Taco", 
         imageUrl: req.body.imageUrl || 'https://images.pexels.com/photos/3434517/pexels-photo-3434517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
+        ingredients: req.body.ingredients || [],
+        proteins: req.body.proteins ||[]
     });
 
     // Save Taco in the database
