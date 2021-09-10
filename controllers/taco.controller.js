@@ -37,3 +37,24 @@ exports.create = (req, res) => {
         });
     });
 };
+
+exports.findOne = (req, res) => {
+    Taco.findById(req.params.id)
+    .then(taco => {
+        if(!taco) {
+            return res.status(404).send({
+                message: "Taco not found with id " + req.params.id
+            });            
+        }
+        res.send(taco);
+    }).catch(err => {
+        if(err.kind === 'ObjectId') {
+            return res.status(404).send({
+                message: "Taco not found with id " + req.params.id
+            });                
+        }
+        return res.status(500).send({
+            message: "Error retrieving taco with id " + req.params.id
+        });
+    });
+};
