@@ -1,5 +1,5 @@
 const Taco = require("../models/taco.model");
-
+const { validate, ValidationError, Joi } = require("express-validation");
 exports.findAll = (req, res) => {
   Taco.find()
     .then((tacos) => {
@@ -13,13 +13,6 @@ exports.findAll = (req, res) => {
 };
 
 exports.create = (req, res) => {
-  // Validate request
-  if (!req.body.name) {
-    return res.status(400).send({
-      message: "Taco name can not be empty",
-    });
-  }
-
   // Create a Taco
   const taco = new Taco({
     name: req.body.name || "Untitled Taco",
