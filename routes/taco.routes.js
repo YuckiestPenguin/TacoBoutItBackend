@@ -2,7 +2,7 @@ const { validate, ValidationError, Joi } = require("express-validation");
 
 const tacoValidation = {
   body: Joi.object({
-    name: Joi.string().email().required(),
+    name: Joi.string().required(),
   }),
 };
 
