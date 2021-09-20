@@ -31,4 +31,4 @@ app.use(function (err, req, res, next) {
   return res.status(500).json(err);
 });
 
-app.listen(3000);
+app.listen((process.env.PORT || 5000));
