@@ -7,6 +7,12 @@ const errorHandler = require("./_helpers/error-handler");
 require("dotenv").config();
 
 app.use(express.json());
+
+var corsOptions = {
+  origin: "http://localhost:3000",
+};
+
+app.use(cors(corsOptions));
 const mongoDbUrl = process.env.DB_URL;
 mongoose.connect(mongoDbUrl);
 
