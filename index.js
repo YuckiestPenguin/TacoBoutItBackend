@@ -4,6 +4,7 @@ const app = express();
 const mongoose = require("mongoose");
 const jwt = require("./_helpers/jwt");
 const errorHandler = require("./_helpers/error-handler");
+const cors = require("cors");
 require("dotenv").config();
 
 app.use(express.json());
